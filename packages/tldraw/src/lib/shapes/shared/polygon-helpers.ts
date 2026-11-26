@@ -1,4 +1,5 @@
 import { Vec2d, VecLike, toDomPrecision } from '@bigbluebutton/editor'
+import { STROKE_DETAIL_SCALE } from './default-shape-constants'
 
 function precise(A: VecLike) {
 	return `${toDomPrecision(A.x)},${toDomPrecision(A.y)} `
@@ -85,8 +86,8 @@ export function getDrawLinePathData(id: string, outline: VecLike[], strokeWidth:
 	let innerPathData = `M ${precise(outline[0])}L`
 	let outerPathData2 = `M ${precise(outline[0])}L`
 
-	const offset = strokeWidth / 3
-	const roundness = strokeWidth * 2
+	const offset = (strokeWidth * STROKE_DETAIL_SCALE) / 3
+	const roundness = strokeWidth * 2 * STROKE_DETAIL_SCALE
 
 	const random = rng(id)
 	let p0 = outline[0]

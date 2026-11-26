@@ -6,6 +6,7 @@ import {
 	getSvgWithShapeFill,
 	useDefaultColorTheme,
 } from '../../shared/ShapeFill'
+import { STROKE_DETAIL_SCALE } from '../../shared/default-shape-constants'
 import { getRoundedInkyPolygonPath, getRoundedPolygonPoints } from '../../shared/polygon-helpers'
 
 export const DrawStylePolygon = React.memo(function DrawStylePolygon({
@@ -22,7 +23,8 @@ export const DrawStylePolygon = React.memo(function DrawStylePolygon({
 	lines?: VecLike[][]
 }) {
 	const theme = useDefaultColorTheme()
-	const polygonPoints = getRoundedPolygonPoints(id, outline, strokeWidth / 3, strokeWidth * 2, 2)
+	const detailWidth = strokeWidth * STROKE_DETAIL_SCALE
+	const polygonPoints = getRoundedPolygonPoints(id, outline, detailWidth / 3, detailWidth * 2, 2)
 	let strokePathData = getRoundedInkyPolygonPath(polygonPoints)
 
 	if (lines) {
@@ -31,7 +33,7 @@ export const DrawStylePolygon = React.memo(function DrawStylePolygon({
 		}
 	}
 
-	const innerPolygonPoints = getRoundedPolygonPoints(id, outline, 0, strokeWidth * 2, 1)
+	const innerPolygonPoints = getRoundedPolygonPoints(id, outline, 0, detailWidth * 2, 1)
 	const innerPathData = getRoundedInkyPolygonPath(innerPolygonPoints)
 
 	return (
@@ -57,7 +59,8 @@ export function DrawStylePolygonSvg({
 	strokeWidth: number
 	theme: TLDefaultColorTheme
 }) {
-	const polygonPoints = getRoundedPolygonPoints(id, outline, strokeWidth / 3, strokeWidth * 2, 2)
+	const detailWidth = strokeWidth * STROKE_DETAIL_SCALE
+	const polygonPoints = getRoundedPolygonPoints(id, outline, detailWidth / 3, detailWidth * 2, 2)
 
 	let strokePathData = getRoundedInkyPolygonPath(polygonPoints)
 
@@ -67,7 +70,7 @@ export function DrawStylePolygonSvg({
 		}
 	}
 
-	const innerPolygonPoints = getRoundedPolygonPoints(id, outline, 0, strokeWidth * 2, 1)
+	const innerPolygonPoints = getRoundedPolygonPoints(id, outline, 0, detailWidth * 2, 1)
 	const innerPathData = getRoundedInkyPolygonPath(innerPolygonPoints)
 
 	const strokeElement = document.createElementNS('http://www.w3.org/2000/svg', 'path')

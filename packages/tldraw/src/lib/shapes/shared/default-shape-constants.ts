@@ -11,11 +11,21 @@ export const TEXT_PROPS = {
 
 /** @public */
 export const STROKE_SIZES: Record<TLDefaultSizeStyle, number> = {
-	s: 2,
-	m: 3.5,
-	l: 5,
-	xl: 10,
+	s: 1,
+	m: 1.75,
+	l: 2.5,
+	xl: 5,
 }
+
+/**
+ * STROKE_SIZES were halved to make lines thinner. Geometry that was derived from the stroke
+ * width (dash spacing, corner roundness, sketchy wobble, etc.) is multiplied by this factor so
+ * those details keep their original size. Must stay in sync with the arrowhead multipliers in
+ * packages/editor/src/lib/editor/shapes/shared/arrow/arrowheads.ts.
+ *
+ * @internal
+ */
+export const STROKE_DETAIL_SCALE = 2
 
 /** @public */
 export const FONT_SIZES: Record<TLDefaultSizeStyle, number> = {

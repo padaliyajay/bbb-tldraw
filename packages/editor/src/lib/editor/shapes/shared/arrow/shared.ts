@@ -123,10 +123,10 @@ export const WAY_TOO_BIG_ARROW_BEND_FACTOR = 10
 
 /** @public */
 export const STROKE_SIZES: Record<string, number> = {
-	s: 2,
-	m: 3.5,
-	l: 5,
-	xl: 10,
+	s: 1,
+	m: 1.75,
+	l: 2.5,
+	xl: 5,
 }
 
 /**

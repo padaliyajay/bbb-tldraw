@@ -31,6 +31,7 @@ import { TextLabel } from '../shared/TextLabel'
 import {
 	FONT_FAMILIES,
 	LABEL_FONT_SIZES,
+	STROKE_DETAIL_SCALE,
 	STROKE_SIZES,
 	TEXT_PROPS,
 } from '../shared/default-shape-constants'
@@ -576,7 +577,13 @@ export class GeoShapeUtil extends BaseBoxShapeUtil<TLGeoShape> {
 				let path: string
 
 				if (props.dash === 'draw') {
-					const polygonPoints = getRoundedPolygonPoints(id, outline, 0, strokeWidth * 2, 1)
+					const polygonPoints = getRoundedPolygonPoints(
+						id,
+						outline,
+						0,
+						strokeWidth * 2 * STROKE_DETAIL_SCALE,
+						1
+					)
 					path = getRoundedInkyPolygonPath(polygonPoints)
 				} else {
 					path = 'M' + outline[0] + 'L' + outline.slice(1) + 'Z'

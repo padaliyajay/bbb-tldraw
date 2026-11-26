@@ -7,6 +7,7 @@ import {
 	TLDrawShapeSegment,
 	Vec2d,
 } from '@bigbluebutton/editor'
+import { STROKE_DETAIL_SCALE } from '../shared/default-shape-constants'
 import { StrokeOptions } from '../shared/freehand/types'
 
 const PEN_EASING = (t: number) => t * 0.65 + SIN((t * PI) / 2) * 0.35
@@ -102,7 +103,7 @@ export function getDrawShapeStrokeDashArray(shape: TLDrawShape, strokeWidth: num
 	return {
 		draw: 'none',
 		solid: `none`,
-		dotted: `0.1 ${strokeWidth * 2}`,
-		dashed: `${strokeWidth * 2} ${strokeWidth * 2}`,
+		dotted: `0.1 ${strokeWidth * 2 * STROKE_DETAIL_SCALE}`,
+		dashed: `${strokeWidth * 2 * STROKE_DETAIL_SCALE} ${strokeWidth * 2 * STROKE_DETAIL_SCALE}`,
 	}[shape.props.dash]
 }

@@ -1,8 +1,9 @@
 import { TLDefaultDashStyle } from '@bigbluebutton/editor'
+import { STROKE_DETAIL_SCALE } from './default-shape-constants'
 
 export function getPerfectDashProps(
 	totalLength: number,
-	strokeWidth: number,
+	actualStrokeWidth: number,
 	opts = {} as Partial<{
 		style: TLDefaultDashStyle
 		snap: number
@@ -23,6 +24,9 @@ export function getPerfectDashProps(
 		lengthRatio = 2,
 		style = 'dashed',
 	} = opts
+
+	// Dash / dot spacing keeps its original size even though strokes are thinner
+	const strokeWidth = actualStrokeWidth * STROKE_DETAIL_SCALE
 
 	let dashLength = 0
 	let dashCount = 0

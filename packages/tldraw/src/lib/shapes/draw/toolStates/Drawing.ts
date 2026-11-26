@@ -17,7 +17,7 @@ import {
 	toFixed,
 	uniqueId,
 } from '@bigbluebutton/editor'
-import { STROKE_SIZES } from '../../shared/default-shape-constants'
+import { STROKE_DETAIL_SCALE, STROKE_SIZES } from '../../shared/default-shape-constants'
 
 type DrawableShape = TLDrawShape | TLHighlightShape
 
@@ -153,7 +153,8 @@ export class Drawing extends StateNode {
 	getIsClosed(segments: TLDrawShapeSegment[], size: TLDefaultSizeStyle) {
 		if (!this.canClose()) return false
 
-		const strokeWidth = STROKE_SIZES[size]
+		// Use the original (pre-halving) width so auto-closing a loop snaps at the same distance
+		const strokeWidth = STROKE_SIZES[size] * STROKE_DETAIL_SCALE
 		const firstPoint = segments[0].points[0]
 		const lastSegment = segments[segments.length - 1]
 		const lastPoint = lastSegment.points[lastSegment.points.length - 1]
